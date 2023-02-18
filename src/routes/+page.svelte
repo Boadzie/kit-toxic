@@ -39,7 +39,7 @@
     <div class="rounded-full border-4 border-t-4 border-green-200 h-24 w-24 animate-spin "></div>
   </div>
   {:else if pred}
-  <div class=" lg:w-3/4 my-4 flex flex-wrap flex-row items-center">
+  <div class="toxicity-predictor  lg:w-3/4 my-4 flex flex-wrap flex-row items-center">
     {#each pred as { label, results }}
     <div class="lg:w-1/2 bg-[#023047] p-2 rounded-sm">
     <p before="👎 " class="inline-flex items-center gap-x-4 before:content-[attr(before)] before:font-black text-red-400 p-2 "><span class="text-lg font-bold text-white">Label:</span> {JSON.stringify(label)}</p>
@@ -57,3 +57,19 @@
   
 </section>
 
+<style>
+.toxicity-predictor {
+  animation: fade-in 1.5s ease-in-out;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translate3d(0, -10%, 0);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+</style>
