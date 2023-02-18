@@ -1,28 +1,21 @@
-# create-svelte
+# Detecting Online Toxicity with Tensorflow.js
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).
+![kit-toxic-animation](static/kit-toxic-animation.gif)
 
-## Creating a project
+> This is a simple web app that uses TensorFlow.js and a pre-trained toxicity model to predict whether a given sentence is toxic or not. The app is built with SvelteKit and styled with Tailwind CSS, and features a loading spinner, a fly animation, and a CSS animation using keyframes.
 
-If you're seeing this, you've probably already done this step. Congrats!
+## How It Works
 
-```bash
-# create a new project in the current directory
-npm create svelte@latest
+The app consists of a single page (`+page.svelte`) with a form that takes a sentence as input and a "Check" button to submit it. When the user clicks the button, the app loads the toxicity model, classifies the sentence, and displays the results in a scrollable panel.
 
-# create a new project in my-app
-npm create svelte@latest my-app
-```
+The app also features a loading spinner while the model is being loaded, a fly animation when the results are displayed, and a CSS animation that makes the title pulse continuously.
 
 ## Developing
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+Once you've forked, cloned the project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
 
 ```bash
-npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
+pnpm run dev
 ```
 
 ## Building
@@ -30,7 +23,7 @@ npm run dev -- --open
 To create a production version of your app:
 
 ```bash
-npm run build
+pnpm run build
 ```
 
 You can preview the production build with `npm run preview`.
