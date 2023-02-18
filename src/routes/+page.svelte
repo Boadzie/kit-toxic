@@ -1,6 +1,8 @@
 <script>
   import * as tf from '@tensorflow/tfjs'
   import * as toxicity from "@tensorflow-models/toxicity";
+  import { fly } from 'svelte/transition';
+ 
     
   let loading = false
   const threshold = 0.9;
@@ -24,4 +26,34 @@
   }
 
 </script>
+
+<section class="m-auto w-1/2 ">
+  <div class="flex flex-col min-h-screen justify-center items-center">
+  <h1 class="text-5xl my-6 font-bold text-slate-500">Toxicity Predictor - Tensorflow.js</h1>
+  <form class="flex flex-col gap-4 w-[35rem]" on:submit|preventDefault={handleClick}>
+    <textarea class="focus:outline-none text-slate-500 ring-2 px-4 py-2 rounded-sm" type="text" on:input={handleInput} value={sentence} required></textarea>
+    <button class="rounded-sm bg-slate-700 w-24 px-4 py-2 text-white ">Check</button>
+  </form>
+  {#if loading == true}
+  <div class="flex justify-center items-center mt-4">
+    <div class="rounded-full border-4 border-t-4 border-green-200 h-24 w-24 animate-spin "></div>
+  </div>
+  {:else if pred}
+  <div class=" lg:w-3/4 my-4 flex flex-wrap flex-row items-center">
+    {#each pred as { label, results }}
+    <div class="lg:w-1/2 bg-[#023047] p-2 rounded-sm">
+    <p before="👎 " class="inline-flex items-center gap-x-4 before:content-[attr(before)] before:font-black text-red-400 p-2 "><span class="text-lg font-bold text-white">Label:</span> {JSON.stringify(label)}</p>
+    </div>
+    <div class="lg:w-1/2 flex gap-4 rounded-sm bg-slate-100">
+    {#each results as {match, probabilities }}
+      <p class=" p-2 font-bold text-slate-500 inline-flex items-center gap-x-4">Match: <span class="text-lg font-bold text-green-700">{JSON.stringify(match > 0 ? "Toxic" : "No match")} </span>  </p>
+    {/each}
+    </div>
+    {/each}
+
+  </div>
+  {/if}
+  </div>
+  
+</section>
 
