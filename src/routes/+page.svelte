@@ -5,13 +5,16 @@
  
     
   let loading = false
-  const threshold = 0.9;
+  const threshold = 0.05;
 
   let pred = null;
   let sentence =""
+  let model = null;
 
   async function classifyToxicity(threshold, sentence) {
-    const model = await toxicity.load(threshold);
+    if(!model) {
+      model = await toxicity.load(threshold);
+    }
     pred = await model.classify(sentence);
   }
 
